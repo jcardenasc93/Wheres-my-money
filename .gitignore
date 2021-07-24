@@ -1,0 +1,5 @@
+# ENV files
+*.env
+
+# Vimspector
+.vimspector.json
