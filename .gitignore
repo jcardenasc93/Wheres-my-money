@@ -3,3 +3,7 @@
 
 # Vimspector
 .vimspector.json
+
+# VsCode an other IDES
+.vscode
+*__pycache__/

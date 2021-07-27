@@ -5,11 +5,16 @@ import uvicorn
 
 from config.app_config import AppConfigManager
 
+# Api routes
+from api.incomes import incomes_router
+
 app_config = AppConfigManager()
 app = FastAPI()
 
 app.add_event_handler("startup", app_config.db.connect_db)
 app.add_event_handler("shutdown", app_config.db.close_connection)
+
+app.include_router(incomes_router)
 
 
 @app.get("/are-you-alive/")

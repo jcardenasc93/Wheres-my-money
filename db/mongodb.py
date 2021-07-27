@@ -20,7 +20,9 @@ class DBManager:
         logging.info("Connecting to database")
         try:
             self._client = AsyncIOMotorClient(str(MONGODB_URL))
+            print("Connected")
         except InvalidURI:
+            print("ERROR connecting ot DB")
             logging.error("MONGODB_URL not valid, please check your .env file")
         except ConnectionFailure:
             logging.error("Cannot perform the connection to the database")
@@ -29,6 +31,6 @@ class DBManager:
         logging.info("Clossing database connection")
         self._client.close()
 
-    async def get_collection(self, collection: str):
+    def collection(self, collection: str):
         db = self._client[MONGO_DB]
-        return db.get_collection(collection)
+        return db[collection]
